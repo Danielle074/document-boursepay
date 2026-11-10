@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>État Collectif des Virements de la Bourse</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f4f5f7;
+      color: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      line-height: 1.4;
+    }
+
+    /* Bouton d'impression */
+    .print-btn {
+      margin-bottom: 20px;
+      padding: 10px 24px;
+      background-color: #008000;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+      transition: background-color 0.2s;
+    }
+
+    .print-btn:hover {
+      background-color: #006400;
+    }
+
+    /* Conteneur Format Paysage (A4 Landscape) */
+    .document-page {
+      background: #ffffff;
+      width: 100%;
+      max-width: 1100px;
+      min-height: 750px;
+      padding: 40px 50px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Styles des variables dynamiques en rouge */
+    .variable {
+      color: #ff0000;
+      font-weight: bold;
+    }
+
+    /* En-tête du document */
+    .header-title {
+      text-align: center;
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 25px;
+      line-height: 1.4;
+    }
+
+    .instructions-text {
+      font-size: 13px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* Tableau des virements */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    .data-table th,
+    .data-table td {
+      border: 1px solid #000;
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+
+    .data-table th {
+      background-color: #e6eef8;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .data-table td.col-no {
+      text-align: center;
+      font-weight: bold;
+      width: 6%;
+    }
+
+    .data-table td.col-name {
+      font-weight: bold;
+      width: 34%;
+    }
+
+    .data-table td.col-amount {
+      text-align: right;
+      font-weight: bold;
+      width: 18%;
+    }
+
+    .data-table td.col-bank {
+      text-align: center;
+      width: 22%;
+    }
+
+    .data-table td.col-account {
+      text-align: center;
+      font-weight: bold;
+      letter-spacing: 1px;
+      width: 20%;
+    }
+
+    .table-footer-cell {
+      border: 1px solid #000;
+      text-align: center;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 6px;
+    }
+
+    /* Arrêté de somme */
+    .total-letter-section {
+      margin-top: 15px;
+      margin-bottom: 60px;
+      font-size: 13px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .total-letter-section span.label {
+      margin-right: 15px;
+    }
+
+    /* Section Signature */
+    .signature-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding-right: 80px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .signature-role {
+      margin-bottom: 70px;
+    }
+
+    /* Configuration spécifique pour l'impression en paysage */
+    @page {
+      size: A4 landscape;
+      margin: 10mm;
+    }
+
+    @media print {
+      body {
+        background-color: #ffffff;
+        padding: 0;
+      }
+      .print-btn {
+        display: none;
+      }
+      .document-page {
+        box-shadow: none;
+        width: 100%;
+        max-width: 100%;
+        min-height: auto;
+        padding: 0;
+      }
+      .variable {
+        color: inherit !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn" onclick="window.print()">Imprimer l'état collectif</button>
+
+  <div class="document-page">
+    <div>
+      <!-- Titre principal -->
+      <div class="header-title">
+        ETAT COLLECTIF DES VIREMENTS DE LA BOURSE <span class="variable">D'AVRIL A JUIN 2026 (ATTRIBUTION</span> OU <span class="variable">RENOUVELLEMENT)</span><br>
+        <span class="variable">MDET</span> OU <span class="variable">MESRS</span>
+      </div>
+
+      <!-- Instructions & Référence -->
+      <div class="instructions-text">
+        Monsieur le Chef de la B.N.P. est prié de bien vouloir effectuer les virements<br>
+        ci-après et d'en débiter le compte n° 30004/ 00892/00010439832/21 Ambassade de Côte d'Ivoire "Service Etudiants"<br>
+        <span class="variable">N°022</span> SCE DU <span class="variable">26/11/2026</span>
+      </div>
+
+      <!-- Tableau principal -->
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>NOMS ET PRENOMS</th>
+            <th>MONTANT EURO</th>
+            <th>BANQUE</th>
+            <th>N° COMPTE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-no">1</td>
+            <td class="col-name">ETUDIANT TEST 1</td>
+            <td class="col-amount">3 048,98</td>
+            <td class="col-bank">BNP PARIBAS</td>
+            <td class="col-account">XXXXX/XXXXX/XXXXXXXXXX/XX</td>
+          </tr>
+          <tr>
+            <td class="col-no">2</td>
+            <td class="col-name">ETUDIANT TEST 2</td>
+            <td class="col-amount">3 048,98</td>
+            <td class="col-bank">SOCIETE GENERALE</td>
+            <td class="col-account">XXXXX/XXXXX/XXXXXXXXXX/XX</td>
+          </tr>
+          <tr>
+            <td class="col-no">3</td>
+            <td class="col-name">ETUDIANT TEST 3</td>
+            <td class="col-amount">3 048,98</td>
+            <td class="col-bank">LE CREDIT LYONNAIS</td>
+            <td class="col-account">XXXXX/XXXXX/XXXXXXXXXX/XX</td>
+          </tr>
+          <tr>
+            <td class="col-no">4</td>
+            <td class="col-name">ETUDIANT TEST 4</td>
+            <td class="col-amount">3 048,98</td>
+            <td class="col-bank">SOCIETE GENERALE</td>
+            <td class="col-account">XXXXX/XXXXX/XXXXXXXXXX/XX</td>
+          </tr>
+          <tr>
+            <td class="col-no">5</td>
+            <td class="col-name">ETUDIANT TEST 5</td>
+            <td class="col-amount">3 048,98</td>
+            <td class="col-bank">LE CREDIT LYONNAIS</td>
+            <td class="col-account">XXXXX/XXXXX/XXXXXXXXXX/XX</td>
+          </tr>
+          <tr>
+            <td class="col-no">6</td>
+            <td class="col-name">ETUDIANT TEST 6</td>
+            <td class="col-amount">3 048,98</td>
+            <td class="col-bank">SOCIETE GENERALE</td>
+            <td class="col-account">XXXXX/XXXXX/XXXXXXXXXX/XX</td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td class="table-footer-cell">TOTAL</td>
+            <td colspan="2"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Libellé du montant total en lettres -->
+      <div class="total-letter-section">
+        <span class="label">ARRETE LE PRESENT ETAT A LA SOMME DE /</span>
+        <span class="variable">TOTAL EN LETTRE :............EUROS ET 00 CTS.</span>
+      </div>
+    </div>
+
+    <!-- Signatures -->
+    <div class="signature-section">
+      <div class="signature-role">LE REGISSEUR D'AVANCES</div>
+      <div class="signature-name">DIABY FATOUMATA</div>
+    </div>
+  </div>
+
+</body>
+</html>

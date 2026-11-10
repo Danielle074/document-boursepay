@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modèle Attestation de Secours Financier</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f4f5f7;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 15px;
+      line-height: 1.5;
+    }
+
+    /* Bouton d'impression */
+    .print-btn {
+      margin-bottom: 20px;
+      padding: 10px 24px;
+      background-color: #008000;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+      transition: background-color 0.2s;
+    }
+
+    .print-btn:hover {
+      background-color: #006400;
+    }
+
+    /* Conteneur principal A4 */
+    .document-page {
+      background: #ffffff;
+      width: 100%;
+      max-width: 800px;
+      min-height: 1050px;
+      padding: 40px 50px 30px 50px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    /* Styles spécifiques aux zones dynamiques / modifiables */
+    .variable {
+      color: #d93025;
+      font-weight: bold;
+    }
+
+    /* En-tête */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 25px;
+    }
+
+    .header-left, .header-right {
+      width: 42%;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .header-left {
+      text-align: left;
+    }
+
+    .header-right {
+      text-align: center;
+    }
+
+    .motto-line {
+      margin-top: 3px;
+      font-weight: normal;
+      text-transform: none;
+    }
+
+    .separator-dots {
+      margin-top: 3px;
+      letter-spacing: 2px;
+    }
+
+    .service-title {
+      margin-top: 15px;
+      font-size: 11px;
+      font-style: italic;
+      font-weight: normal;
+      text-transform: none;
+    }
+
+    .header-center {
+      width: 16%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .header-center img {
+      max-width: 85px;
+      height: auto;
+    }
+
+    /* Référence & Date */
+    .meta-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 35px;
+    }
+
+    /* Titre Encadré */
+    .title-box-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .title-box {
+      border: 1.5px solid #000;
+      padding: 10px 30px;
+      text-align: center;
+    }
+
+    .title-box h1 {
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Corps du texte */
+    .content-section {
+      font-size: 13.5px;
+      text-align: justify;
+      margin-bottom: 30px;
+    }
+
+    .content-section p {
+      margin-bottom: 22px;
+      text-indent: 30px;
+      line-height: 1.6;
+    }
+
+    /* Bloc de Signature */
+    .signature-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-bottom: 30px;
+      padding-right: 20px;
+    }
+
+    .signature-block {
+      text-align: left;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .signature-block .title {
+      font-weight: normal;
+    }
+
+    .signature-image {
+      margin: 10px 0;
+      max-width: 220px;
+      height: auto;
+    }
+
+    .signature-name {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    /* Pied de page */
+    .footer-section {
+      border-top: 2.5px double #c0504d;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      line-height: 1.3;
+    }
+
+    .footer-left {
+      width: 33%;
+      text-align: left;
+    }
+
+    .footer-center {
+      width: 33%;
+      text-align: center;
+    }
+
+    .footer-right {
+      width: 33%;
+      text-align: right;
+    }
+
+    /* Support Impression */
+    @media print {
+      body {
+        background-color: #ffffff;
+        padding: 0;
+      }
+      .print-btn {
+        display: none;
+      }
+      .document-page {
+        box-shadow: none;
+        width: 100%;
+        max-width: 100%;
+        min-height: auto;
+        padding: 0;
+      }
+      /* Pour masquer la couleur rouge lors de l'impression définitive */
+      .variable {
+        color: inherit !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn" onclick="window.print()">Imprimer le document</button>
+
+  <div class="document-page">
+    <div>
+      <!-- En-tête -->
+      <header class="header">
+        <div class="header-left">
+          <p>AMBASSADE DE REPUBLIQUE DE COTE D'IVOIRE<br>PRES LA REPUBLIQUE FRANÇAISE<br>ET LA PRINCIPAUTE DE MONACO</p>
+          <div class="separator-dots">-----------------</div>
+          <p class="service-title">Service Étudiants et Coopération Scientifique</p>
+          <div class="separator-dots">-----------------</div>
+        </div>
+
+        <div class="header-center">
+          <img src="embleme-cote-divoire.png" alt="Blason de la Côte d'Ivoire">
+        </div>
+
+        <div class="header-right">
+          <p>REPUBLIQUE DE COTE D'IVOIRE</p>
+          <div class="separator-dots">-----------------</div>
+          <p class="motto-line">Union – Discipline – Travail</p>
+          <div class="separator-dots">-----------------</div>
+        </div>
+      </header>
+
+      <!-- Référence & Date -->
+      <div class="meta-line">
+        <div>
+          N°<span class="variable">.....</span>AMBACI-PAR/PC/SECS/<span class="variable">DTAE/OAHC ou NDP ou MEL ou wml</span> / <span class="variable">(mois/année)</span>
+        </div>
+        <div>
+          Paris, le <span class="variable">jj /mm/ aaaa</span>
+        </div>
+      </div>
+
+      <!-- Titre Encadré -->
+      <div class="title-box-container">
+        <div class="title-box">
+          <h1>ATTESTATION DE SECOURS FINANCIER</h1>
+        </div>
+      </div>
+
+      <!-- Corps du texte -->
+      <main class="content-section">
+        <p>
+          Je soussigné, Maurice Kouakou BANDAMAN, Ambassadeur Extraordinaire et Plénipotentiaire de la République de Côte d'Ivoire près la République Française et la Principauté de Monaco atteste, que Monsieur /Madame <span class="variable">Nom +Prénom</span>, né(é) le <span class="variable">Date + Lieu de Naissance</span>, étudiant(e) <span class="variable">Année d'étude + formation + Ecole</span>, est bénéficiaire d'un secours financier de <span class="variable">4.573,47 euros du Ministère Délégué chargé de l'Enseignement Technique ou Ministère de l'Enseignement Supérieur et de la Recherche Scientifique</span>, (Décision N°<span class="variable">0792/MENAET-ET/CAB/DOBM du 12 octobre 2026</span>)ou(Décision N°<span class="variable">0792/MESRS/DOB/SD-BEHCI du 12 octobre 2026</span>), au titre de l'année académique <span class="variable">2026/2027</span>.
+        </p>
+
+        <p>
+          Cette somme sera virée sur le compte bancaire de l'étudiant(e) en fonction de la disponibilité de la trésorerie.
+        </p>
+
+        <p>
+          En foi de quoi, la présente attestation est établie pour servir et valoir ce que de droit.
+        </p>
+      </main>
+
+      <!-- Bloc Signature -->
+      <section class="signature-section">
+        <div class="signature-block">
+          <p class="title">Pour l'Ambassadeur<br>p/o Le Conseiller<br>Chef de Service Adjoint</p>
+          <img src="signature.png" alt="Signature et Tampon" class="signature-image">
+          <p class="signature-name">DIARRASSOUBA Alex-Emma</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Pied de page -->
+    <footer class="footer-section">
+      <div class="footer-left">
+        102, Avenue Raymond Poincaré
+      </div>
+      <div class="footer-center">
+        75116 Paris<br>
+        Mail : education.insertion@gmail.com
+      </div>
+      <div class="footer-right">
+        Tél. : 01 53 64 62 11<br>
+        Fax : 01 45 00 47 97
+      </div>
+    </footer>
+  </div>
+
+</body>
+</html>
